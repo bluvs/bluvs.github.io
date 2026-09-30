@@ -6,331 +6,247 @@
     <title>Bluvs - Portfolio</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         :root {
-            /* Theme 1: Soft Rose & Blue */
-            --bg-color: #fdfbfb;
-            --primary-color: #fce4ec;
-            --accent-color: #e3f2fd;
-            --text-color: #2c3e50;
-            --text-muted: #7f8c8d;
-            --card-bg: #ffffff;
-            --shadow-color: rgba(0, 0, 0, 0.05);
-            --border-color: #f0f0f0;
+            /* Theme 1: Soft Rose & Blue (Light Glass) */
+            --blob-1: #ffc3a0;
+            --blob-2: #ffafbd;
+            --blob-3: #c9d6ff;
+            --text-color: #1e293b;
+            --text-muted: #475569;
+            --glass-bg: rgba(255, 255, 255, 0.4);
+            --glass-border: rgba(255, 255, 255, 0.6);
+            --glass-shadow: rgba(0, 0, 0, 0.05);
+            --glass-hover: rgba(255, 255, 255, 0.6);
+            --accent: #0f172a;
+            --accent-text: #ffffff;
         }
 
         [data-theme="theme-2"] {
-            /* Mint & Peach */
-            --bg-color: #f9fdfc;
-            --primary-color: #e0f2f1;
-            --accent-color: #fff3e0;
-            --text-color: #37474f;
-            --text-muted: #78909c;
-            --card-bg: #ffffff;
-            --shadow-color: rgba(55, 71, 79, 0.05);
-            --border-color: #eceff1;
+            /* Theme 2: Mint & Peach */
+            --blob-1: #a1c4fd;
+            --blob-2: #c2e9fb;
+            --blob-3: #e0c3fc;
         }
 
         [data-theme="theme-3"] {
-            /* Lavender & Butter */
-            --bg-color: #fcfbfe;
-            --primary-color: #f3e5f5;
-            --accent-color: #fffde7;
-            --text-color: #4a148c;
-            --text-muted: #9575cd;
-            --card-bg: #ffffff;
-            --shadow-color: rgba(74, 20, 140, 0.05);
-            --border-color: #ede7f6;
+            /* Theme 3: Lavender & Butter */
+            --blob-1: #e6e9f0;
+            --blob-2: #eef1f5;
+            --blob-3: #c1dfc4;
+            --text-color: #2d3748;
+            --text-muted: #4a5568;
         }
 
         [data-theme="theme-4"] {
-            /* Coral & Teal */
-            --bg-color: #fefcfb;
-            --primary-color: #fbe9e7;
-            --accent-color: #e0f2f1;
-            --text-color: #bf360c;
-            --text-muted: #ff8a65;
-            --card-bg: #ffffff;
-            --shadow-color: rgba(191, 54, 12, 0.05);
-            --border-color: #fbe9e7;
+            /* Theme 4: Coral & Teal */
+            --blob-1: #ffecd2;
+            --blob-2: #fcb69f;
+            --blob-3: #a18cd1;
         }
 
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-
+        /* Base Resets */
+        * { box-sizing: border-box; margin: 0; padding: 0; }
         body {
-            background-color: var(--bg-color);
+            background-color: #f8fafc;
             color: var(--text-color);
             font-family: 'Inter', sans-serif;
             line-height: 1.6;
-            transition: background-color 0.5s ease, color 0.5s ease;
             overflow-x: hidden;
             -webkit-font-smoothing: antialiased;
+            position: relative;
         }
 
-        h1, h2, h3, h4 {
-            font-weight: 800;
-            margin-bottom: 1rem;
-            letter-spacing: -0.02em;
-        }
-
-        p {
-            color: var(--text-muted);
-            font-weight: 300;
-        }
-
-        /* SVG Icon styling */
-        svg {
-            stroke: currentColor;
-            fill: none;
-            stroke-width: 1.5;
-            stroke-linecap: round;
-            stroke-linejoin: round;
-            transition: stroke 0.3s ease;
-        }
-
-        /* Nav & Theme Toggle */
-        nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 1.5rem 5%;
+        /* Animated Background Blobs */
+        .background {
             position: fixed;
-            top: 0;
-            width: 100%;
-            background: rgba(255, 255, 255, 0.8);
-            backdrop-filter: blur(10px);
-            z-index: 1000;
-            border-bottom: 1px solid var(--border-color);
-            transition: background-color 0.5s ease, border-color 0.5s ease;
+            top: 0; left: 0; width: 100vw; height: 100vh;
+            z-index: -1;
+            overflow: hidden;
+            background: #f8fafc;
+            transition: background 0.5s ease;
+        }
+        .blob {
+            position: absolute;
+            filter: blur(90px);
+            opacity: 0.7;
+            animation: float 20s infinite alternate;
+            border-radius: 50%;
+            transition: background 1s ease;
+        }
+        .blob-1 {
+            top: -10%; left: -10%;
+            width: 50vw; height: 50vw;
+            background: var(--blob-1);
+            animation-delay: 0s;
+        }
+        .blob-2 {
+            top: 40%; right: -20%;
+            width: 40vw; height: 40vw;
+            background: var(--blob-2);
+            animation-delay: -5s;
+        }
+        .blob-3 {
+            bottom: -20%; left: 20%;
+            width: 60vw; height: 50vw;
+            background: var(--blob-3);
+            animation-delay: -10s;
         }
 
-        .logo {
-            font-size: 1.5rem;
-            font-weight: 800;
-            color: var(--text-color);
-            text-decoration: none;
-            letter-spacing: -0.05em;
+        @keyframes float {
+            0% { transform: translate(0, 0) scale(1); }
+            33% { transform: translate(30px, -50px) scale(1.1); }
+            66% { transform: translate(-20px, 20px) scale(0.9); }
+            100% { transform: translate(0, 0) scale(1); }
         }
+
+        /* Typography */
+        h1, h2, h3, h4 {
+            font-weight: 700;
+            letter-spacing: -0.03em;
+            margin-bottom: 0.5rem;
+        }
+        p { color: var(--text-muted); font-weight: 400; }
+
+        svg {
+            stroke: currentColor; fill: none;
+            stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round;
+        }
+
+        /* Nav */
+        nav {
+            position: fixed; top: 0; width: 100%;
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 1rem 5%; z-index: 1000;
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--glass-border);
+        }
+        .logo { font-size: 1.5rem; font-weight: 800; color: var(--text-color); text-decoration: none; letter-spacing: -0.05em; }
 
         .theme-btn {
-            background-color: transparent;
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
             color: var(--text-color);
-            border: 1px solid var(--border-color);
-            padding: 0.6rem;
-            border-radius: 50%;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            padding: 0.6rem; border-radius: 50%; cursor: pointer;
+            transition: all 0.3s ease; display: flex; align-items: center; justify-content: center;
+            backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
         }
+        .theme-btn:hover { background: var(--glass-hover); transform: scale(1.05); }
+        .theme-btn svg { width: 20px; height: 20px; }
 
-        .theme-btn:hover {
-            background-color: var(--accent-color);
-            border-color: var(--accent-color);
-        }
-
-        .theme-btn svg {
-            width: 20px;
-            height: 20px;
-        }
-
-        /* Sections */
-        section {
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            padding: 6rem 5% 4rem 5%;
-            text-align: center;
-        }
-
+        /* Layout */
         .container {
-            max-width: 1000px;
-            width: 100%;
+            max-width: 1200px; margin: 0 auto; padding: 7rem 5% 4rem;
+        }
+
+        /* Glass Card Base */
+        .glass-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid var(--glass-border);
+            border-radius: 24px;
+            padding: 2.5rem;
+            box-shadow: 0 8px 32px var(--glass-shadow);
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275),
+                        background 0.3s ease, box-shadow 0.3s ease;
+        }
+        .glass-card:hover {
+            transform: translateY(-5px);
+            background: var(--glass-hover);
+            box-shadow: 0 16px 40px rgba(0,0,0,0.08);
         }
 
         /* Hero */
-        .hero-title {
-            font-size: 4rem;
-            margin-bottom: 1rem;
-            color: var(--text-color);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 1rem;
+        .hero {
+            display: flex; flex-direction: column; align-items: center; text-align: center;
+            margin-bottom: 4rem;
         }
+        .hero-title { font-size: clamp(3rem, 6vw, 5rem); font-weight: 800; line-height: 1.1; margin-bottom: 1rem; }
+        .hero-subtitle { font-size: clamp(1.1rem, 2vw, 1.3rem); max-width: 600px; margin: 0 auto 2rem; }
 
-        .hero-title svg {
-            width: 48px;
-            height: 48px;
-            color: var(--text-muted);
-        }
-
-        .hero-subtitle {
-            font-size: 1.2rem;
-            margin-bottom: 2rem;
-            color: var(--text-muted);
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            background-color: var(--primary-color);
-            color: var(--text-color);
-            padding: 0.8rem 2rem;
-            border-radius: 8px;
-            text-decoration: none;
-            font-size: 1rem;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            border: 1px solid transparent;
-        }
-
-        .btn:hover {
-            background-color: transparent;
-            border-color: var(--primary-color);
-            transform: translateY(-2px);
-            box-shadow: 0 10px 20px var(--shadow-color);
-        }
-
-        /* Cards Layout */
-        .grid {
+        /* Bento Grid */
+        .bento-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
-            text-align: left;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+            auto-rows: minmax(200px, auto);
         }
 
-        .section-header {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 0.75rem;
-            font-size: 2.5rem;
+        .bento-item { display: flex; flex-direction: column; justify-content: space-between; }
+        .bento-item.span-2 { grid-column: span 2; }
+        .bento-item.span-3 { grid-column: span 3; }
+        .bento-item.span-4 { grid-column: span 4; }
+        .bento-item.row-2 { grid-row: span 2; }
+
+        @media (max-width: 900px) {
+            .bento-grid { grid-template-columns: repeat(2, 1fr); }
+            .bento-item.span-3 { grid-column: span 2; }
         }
-        .section-header svg {
-            width: 36px;
-            height: 36px;
+        @media (max-width: 600px) {
+            .bento-grid { grid-template-columns: 1fr; }
+            .bento-item.span-2, .bento-item.span-3 { grid-column: span 1; }
         }
 
-        .card {
-            background-color: var(--card-bg);
-            border-radius: 12px;
-            padding: 2.5rem;
-            border: 1px solid var(--border-color);
-            transition: all 0.4s ease;
-            box-shadow: 0 4px 6px var(--shadow-color);
-            position: relative;
-            overflow: hidden;
+        /* Project Links & Buttons */
+        .btn {
+            display: inline-flex; align-items: center; gap: 0.5rem;
+            background: var(--accent); color: var(--accent-text);
+            padding: 0.75rem 1.5rem; border-radius: 12px;
+            text-decoration: none; font-weight: 500; font-size: 0.95rem;
+            transition: all 0.3s ease; border: 1px solid transparent;
+            margin-top: auto; align-self: flex-start;
+        }
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(15, 23, 42, 0.15);
+            opacity: 0.9;
         }
 
-        .card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 4px;
-            background-color: var(--accent-color);
-            transform: scaleX(0);
-            transform-origin: left;
-            transition: transform 0.4s ease;
+        .btn-outline {
+            background: transparent; color: var(--text-color);
+            border: 1px solid var(--text-color);
+        }
+        .btn-outline:hover {
+            background: var(--text-color); color: var(--accent-text);
         }
 
-        .card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 12px 24px var(--shadow-color);
-            border-color: transparent;
-        }
+        .icon-wrapper { margin-bottom: 1.5rem; }
+        .icon-wrapper svg { width: 32px; height: 32px; color: var(--text-color); }
 
-        .card:hover::before {
-            transform: scaleX(1);
-        }
-
-        .card-icon {
-            margin-bottom: 1.5rem;
-            color: var(--text-color);
-        }
-
-        .card-icon svg {
-            width: 32px;
-            height: 32px;
-        }
-
-        .card-title {
-            font-size: 1.25rem;
-            margin-bottom: 1rem;
-        }
-
-        /* Tech Stack Labels */
         .tech-pill {
-            display: inline-block;
-            background-color: transparent;
-            border: 1px solid var(--border-color);
-            color: var(--text-muted);
-            padding: 0.4rem 0.8rem;
-            border-radius: 4px;
-            margin: 0.2rem;
-            font-size: 0.8rem;
-            font-weight: 400;
-            transition: all 0.3s ease;
+            display: inline-flex; align-items: center; justify-content: center;
+            background: rgba(255, 255, 255, 0.5); border: 1px solid var(--glass-border);
+            padding: 0.4rem 0.8rem; border-radius: 8px; margin: 0.2rem;
+            font-size: 0.85rem; font-weight: 500; transition: all 0.3s ease;
         }
+        .tech-pill:hover { background: var(--text-color); color: var(--accent-text); }
 
-        .card:hover .tech-pill {
-            border-color: var(--accent-color);
-            color: var(--text-color);
-        }
-
-        /* Footer / Fun Section */
-        .fun-section {
-            min-height: 40vh;
-            background-color: var(--primary-color);
-            border-top: 1px solid var(--border-color);
-        }
-
-        .fun-element {
-            display: inline-flex;
-            margin: 2rem;
-            color: var(--text-color);
-            opacity: 0.5;
-            transition: opacity 0.3s ease;
-        }
-
-        .fun-element:hover {
-            opacity: 1;
-        }
-
-        .fun-element svg {
-            width: 48px;
-            height: 48px;
-        }
-
-        /* Scroll Reveal Animations */
-        .reveal {
+        /* 3D Unfold Animations */
+        .reveal-3d {
             opacity: 0;
-            transform: translateY(30px);
-            transition: all 1s cubic-bezier(0.16, 1, 0.3, 1);
+            transform: perspective(1200px) rotateX(-20deg) translateY(60px) scale(0.9);
+            transform-origin: top center;
+            transition: opacity 0.8s cubic-bezier(0.2, 0.8, 0.2, 1),
+                        transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+        }
+        .reveal-3d.active {
+            opacity: 1;
+            transform: perspective(1200px) rotateX(0deg) translateY(0) scale(1);
         }
 
-        .reveal.active {
-            opacity: 1;
-            transform: translateY(0);
-        }
     </style>
 </head>
 <body>
+
+    <div class="background">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+        <div class="blob blob-3"></div>
+    </div>
 
     <nav>
         <a href="#" class="logo">bluvs.</a>
@@ -339,60 +255,39 @@
         </button>
     </nav>
 
-    <!-- Hero / About -->
-    <section id="about">
-        <div class="container reveal">
-            <h1 class="hero-title">
-                Hi, I'm bluvs.
-                <svg viewBox="0 0 24 24"><path d="M18 8h1a4 4 0 0 1 0 8h-1M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8zM6 1v3M10 1v3M14 1v3"/></svg>
-            </h1>
-            <p class="hero-subtitle">Creative Fullstack Developer & Solutions Architect</p>
-            <p>I build fast, scalable web applications with a focus on clean code and minimalist, elegant architecture.</p>
-            <a href="#projects" class="btn" style="margin-top: 2rem;">
-                See My Work
-                <svg viewBox="0 0 24 24" style="width: 16px; height: 16px;"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-            </a>
+    <div class="container">
+        <!-- Hero Section -->
+        <div class="hero reveal-3d">
+            <h1 class="hero-title">Creative Fullstack<br>Architect</h1>
+            <p class="hero-subtitle">Hi, I'm bluvs. I build fast, scalable web applications with a focus on clean code and minimalist, elegant architecture.</p>
         </div>
-    </section>
 
-    <!-- Tech Stack -->
-    <section id="stack">
-        <div class="container">
-            <h2 class="reveal section-header">
-                <svg viewBox="0 0 24 24"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
-                My Tech Stack
-            </h2>
-            <div class="grid">
-                <div class="card reveal">
-                    <div class="card-icon">
-                        <svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+        <!-- Bento Grid Layout -->
+        <div class="bento-grid">
+
+            <!-- Tech Stack (Large Card) -->
+            <div class="glass-card bento-item span-2 row-2 reveal-3d" style="transition-delay: 0.1s;">
+                <div>
+                    <div class="icon-wrapper">
+                        <svg viewBox="0 0 24 24"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
                     </div>
-                    <h3 class="card-title">Frontend</h3>
-                    <div>
+                    <h3>My Tech Stack</h3>
+                    <p style="margin-bottom: 1.5rem;">The tools I use to bring ideas to life.</p>
+                </div>
+                <div>
+                    <div style="margin-bottom: 1rem;">
                         <span class="tech-pill">React</span>
                         <span class="tech-pill">Next.js</span>
                         <span class="tech-pill">TypeScript</span>
                         <span class="tech-pill">TailwindCSS</span>
                         <span class="tech-pill">Vue.js</span>
                     </div>
-                </div>
-                <div class="card reveal" style="transition-delay: 0.1s">
-                    <div class="card-icon">
-                        <svg viewBox="0 0 24 24"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
-                    </div>
-                    <h3 class="card-title">Backend</h3>
-                    <div>
+                    <div style="margin-bottom: 1rem;">
                         <span class="tech-pill">Node.js</span>
                         <span class="tech-pill">Express</span>
                         <span class="tech-pill">NestJS</span>
                         <span class="tech-pill">Python</span>
                     </div>
-                </div>
-                <div class="card reveal" style="transition-delay: 0.2s">
-                    <div class="card-icon">
-                        <svg viewBox="0 0 24 24"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg>
-                    </div>
-                    <h3 class="card-title">DevOps & DB</h3>
                     <div>
                         <span class="tech-pill">PostgreSQL</span>
                         <span class="tech-pill">MongoDB</span>
@@ -402,94 +297,81 @@
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
 
-    <!-- Projects -->
-    <section id="projects">
-        <div class="container">
-            <h2 class="reveal section-header">
-                <svg viewBox="0 0 24 24"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
-                Cool Projects
-            </h2>
-            <div class="grid">
-                <div class="card reveal">
-                    <div class="card-icon">
-                        <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-                    </div>
-                    <h3 class="card-title">Wardan</h3>
-                    <p>A 100% free Discord moderation bot designed to keep communities safe with advanced features.</p>
+            <!-- Project 1 -->
+            <div class="glass-card bento-item span-2 reveal-3d" style="transition-delay: 0.2s;">
+                <div class="icon-wrapper">
+                    <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
                 </div>
-                <div class="card reveal" style="transition-delay: 0.1s">
-                    <div class="card-icon">
-                        <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-                    </div>
-                    <h3 class="card-title">ThreatScope</h3>
-                    <p>A powerful WebApp for scanning, analyzing, and detecting suspicious files and threats.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Contact -->
-    <section id="contact">
-        <div class="container reveal">
-            <h2 class="section-header">
-                <svg viewBox="0 0 24 24"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
-                Let's Talk.
-            </h2>
-            <p style="margin-bottom: 3rem; font-size: 1.1rem;">Have a project in mind or just want to connect?</p>
-            <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+                <h3 style="margin-bottom: 0.5rem;">Wardan</h3>
+                <p style="margin-bottom: 1.5rem;">A 100% free Discord moderation bot designed to keep communities safe with advanced features.</p>
                 <a href="https://github.com/bluvs" target="_blank" class="btn">
-                    <svg viewBox="0 0 24 24" style="width: 18px; height: 18px;"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
-                    GitHub
-                </a>
-                <a href="#" class="btn" style="background-color: transparent; border-color: var(--text-color);">
-                    Discord: bluvs
-                </a>
-                <a href="https://fakecrime.bio/bluvs" target="_blank" class="btn">
-                    <svg viewBox="0 0 24 24" style="width: 18px; height: 18px;"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
-                    Fakecrime
+                    View Project
+                    <svg viewBox="0 0 24 24" style="width: 16px; height: 16px;"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
                 </a>
             </div>
-        </div>
-    </section>
 
-    <!-- Fun Section -->
-    <section id="fun" class="fun-section">
-        <div class="container reveal">
-            <h2 style="font-size: 1.5rem; margin-bottom: 2rem;">Abstracts</h2>
-            <div>
-                <span class="fun-element">
-                    <svg viewBox="0 0 24 24"><polygon points="12 2 2 22 22 22 12 2"/></svg>
-                </span>
-                <span class="fun-element">
-                    <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/></svg>
-                </span>
-                <span class="fun-element">
-                    <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/></svg>
-                </span>
+            <!-- Project 2 -->
+            <div class="glass-card bento-item span-2 reveal-3d" style="transition-delay: 0.3s;">
+                <div class="icon-wrapper">
+                    <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                </div>
+                <h3 style="margin-bottom: 0.5rem;">ThreatScope</h3>
+                <p style="margin-bottom: 1.5rem;">A powerful WebApp for scanning, analyzing, and detecting suspicious files and threats.</p>
+                <a href="https://github.com/bluvs" target="_blank" class="btn">
+                    View Project
+                    <svg viewBox="0 0 24 24" style="width: 16px; height: 16px;"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                </a>
             </div>
+
+            <!-- Contact Section (Bento items) -->
+            <div class="glass-card bento-item reveal-3d" style="transition-delay: 0.1s;">
+                <h3 style="font-size: 1.1rem; margin-bottom: 1rem;">GitHub</h3>
+                <p style="font-size: 0.9rem; margin-bottom: 1.5rem;">Check out my open source contributions and repositories.</p>
+                <a href="https://github.com/bluvs" target="_blank" class="btn btn-outline" style="width: 100%; justify-content: center;">
+                    <svg viewBox="0 0 24 24" style="width: 18px; height: 18px;"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+                    @bluvs
+                </a>
+            </div>
+
+            <div class="glass-card bento-item reveal-3d" style="transition-delay: 0.2s;">
+                <h3 style="font-size: 1.1rem; margin-bottom: 1rem;">Discord</h3>
+                <p style="font-size: 0.9rem; margin-bottom: 1.5rem;">Let's chat about tech, projects, or gaming.</p>
+                <a href="#" class="btn btn-outline" style="width: 100%; justify-content: center;">
+                    <svg viewBox="0 0 24 24" style="width: 18px; height: 18px;"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+                    bluvs
+                </a>
+            </div>
+
+            <div class="glass-card bento-item reveal-3d" style="transition-delay: 0.3s;">
+                <h3 style="font-size: 1.1rem; margin-bottom: 1rem;">Fakecrime</h3>
+                <p style="font-size: 0.9rem; margin-bottom: 1.5rem;">My personal bio link with all the updates.</p>
+                <a href="https://fakecrime.bio/bluvs" target="_blank" class="btn btn-outline" style="width: 100%; justify-content: center;">
+                    <svg viewBox="0 0 24 24" style="width: 18px; height: 18px;"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
+                    Profile
+                </a>
+            </div>
+
+            <div class="glass-card bento-item span-1 reveal-3d" style="transition-delay: 0.4s; align-items: center; justify-content: center; min-height: 200px;">
+                <svg viewBox="0 0 24 24" style="width: 64px; height: 64px; opacity: 0.2;"><polygon points="12 2 2 22 22 22 12 2"/></svg>
+            </div>
+
         </div>
-    </section>
+    </div>
 
     <script>
-        // Theme Toggler Logic
+        // Theme Toggler
         const themes = ['theme-1', 'theme-2', 'theme-3', 'theme-4'];
         let currentThemeIndex = 0;
-
         const themeBtn = document.getElementById('themeToggle');
         const root = document.documentElement;
 
-        // Check local storage for saved theme
         const savedTheme = localStorage.getItem('bluvs-theme');
         if (savedTheme) {
             currentThemeIndex = themes.indexOf(savedTheme);
-            if (currentThemeIndex !== -1) {
-                if (savedTheme !== 'theme-1') {
-                    root.setAttribute('data-theme', savedTheme);
-                }
-            } else {
+            if (currentThemeIndex !== -1 && savedTheme !== 'theme-1') {
+                root.setAttribute('data-theme', savedTheme);
+            } else if (currentThemeIndex === -1) {
                 currentThemeIndex = 0;
             }
         }
@@ -503,28 +385,39 @@
             } else {
                 root.setAttribute('data-theme', newTheme);
             }
-
             localStorage.setItem('bluvs-theme', newTheme);
         });
 
-        // Scroll Reveal Logic
-        function reveal() {
-            var reveals = document.querySelectorAll(".reveal");
-            for (var i = 0; i < reveals.length; i++) {
-                var windowHeight = window.innerHeight;
-                var elementTop = reveals[i].getBoundingClientRect().top;
-                var elementVisible = 50;
+        // 3D Unfold Scroll Animations
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.1
+        };
 
-                if (elementTop < windowHeight - elementVisible) {
-                    reveals[i].classList.add("active");
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                    // Stop observing once animated
+                    observer.unobserve(entry.target);
                 }
-            }
-        }
+            });
+        }, observerOptions);
 
-        window.addEventListener("scroll", reveal);
-        // Trigger once on load
-        reveal();
-        setTimeout(reveal, 100);
+        document.querySelectorAll('.reveal-3d').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Initial trigger for elements already in viewport
+        setTimeout(() => {
+            document.querySelectorAll('.reveal-3d').forEach(el => {
+                const rect = el.getBoundingClientRect();
+                if (rect.top < window.innerHeight) {
+                    el.classList.add('active');
+                }
+            });
+        }, 100);
     </script>
 </body>
 </html>
