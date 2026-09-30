@@ -9,69 +9,96 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         :root {
-            /* Theme 1: Soft Rose & Blue (Light Glass) */
-            --blob-1: #ffc3a0;
-            --blob-2: #ffafbd;
-            --blob-3: #c9d6ff;
-            --text-color: #1e293b;
-            --text-muted: #475569;
-            --glass-bg: rgba(255, 255, 255, 0.4);
-            --glass-border: rgba(255, 255, 255, 0.6);
-            --glass-shadow: rgba(0, 0, 0, 0.05);
-            --glass-hover: rgba(255, 255, 255, 0.6);
-            --accent: #0f172a;
-            --accent-text: #ffffff;
+            /* Theme 1 (Default): Apple Dark - Midnight Space */
+            --bg-base: #000000;
+            --blob-1: #1e1b4b;
+            --blob-2: #1e293b;
+            --blob-3: #0f172a;
+            --text-color: #f8fafc;
+            --text-muted: #94a3b8;
+            --glass-bg: rgba(30, 30, 30, 0.4);
+            --glass-border: rgba(255, 255, 255, 0.08);
+            --glass-shadow: rgba(0, 0, 0, 0.5);
+            --glass-hover: rgba(50, 50, 50, 0.5);
+            --accent: #ffffff;
+            --accent-text: #000000;
         }
 
         [data-theme="theme-2"] {
-            /* Theme 2: Mint & Peach */
-            --blob-1: #a1c4fd;
-            --blob-2: #c2e9fb;
-            --blob-3: #e0c3fc;
+            /* Theme 2: Apple Dark - Graphite */
+            --bg-base: #0a0a0a;
+            --blob-1: #27272a;
+            --blob-2: #18181b;
+            --blob-3: #000000;
+            --text-color: #fafafa;
+            --text-muted: #a1a1aa;
+            --glass-bg: rgba(25, 25, 25, 0.5);
+            --glass-border: rgba(255, 255, 255, 0.05);
+            --glass-shadow: rgba(0, 0, 0, 0.6);
+            --glass-hover: rgba(40, 40, 40, 0.6);
+            --accent: #d4d4d8;
+            --accent-text: #000000;
         }
 
         [data-theme="theme-3"] {
-            /* Theme 3: Lavender & Butter */
-            --blob-1: #e6e9f0;
-            --blob-2: #eef1f5;
-            --blob-3: #c1dfc4;
-            --text-color: #2d3748;
-            --text-muted: #4a5568;
+            /* Theme 3: Apple Light - Silver */
+            --bg-base: #f5f5f7;
+            --blob-1: #e2e8f0;
+            --blob-2: #f1f5f9;
+            --blob-3: #f8fafc;
+            --text-color: #1d1d1f;
+            --text-muted: #86868b;
+            --glass-bg: rgba(255, 255, 255, 0.6);
+            --glass-border: rgba(255, 255, 255, 0.8);
+            --glass-shadow: rgba(0, 0, 0, 0.05);
+            --glass-hover: rgba(255, 255, 255, 0.8);
+            --accent: #000000;
+            --accent-text: #ffffff;
         }
 
         [data-theme="theme-4"] {
-            /* Theme 4: Coral & Teal */
-            --blob-1: #ffecd2;
-            --blob-2: #fcb69f;
-            --blob-3: #a18cd1;
+            /* Theme 4: Apple Light - Starlight */
+            --bg-base: #faf9f6;
+            --blob-1: #f3f0eb;
+            --blob-2: #faf8f5;
+            --blob-3: #ffffff;
+            --text-color: #1d1d1f;
+            --text-muted: #86868b;
+            --glass-bg: rgba(255, 255, 255, 0.5);
+            --glass-border: rgba(255, 255, 255, 0.9);
+            --glass-shadow: rgba(0, 0, 0, 0.06);
+            --glass-hover: rgba(255, 255, 255, 0.9);
+            --accent: #4a4a4a;
+            --accent-text: #ffffff;
         }
 
         /* Base Resets */
         * { box-sizing: border-box; margin: 0; padding: 0; }
         body {
-            background-color: #f8fafc;
+            background-color: var(--bg-base);
             color: var(--text-color);
             font-family: 'Inter', sans-serif;
             line-height: 1.6;
             overflow-x: hidden;
             -webkit-font-smoothing: antialiased;
             position: relative;
+            transition: background-color 0.5s ease, color 0.5s ease;
         }
 
-        /* Animated Background Blobs */
+        /* Ambient Background (Subtle Apple-style) */
         .background {
             position: fixed;
             top: 0; left: 0; width: 100vw; height: 100vh;
             z-index: -1;
             overflow: hidden;
-            background: #f8fafc;
+            background: var(--bg-base);
             transition: background 0.5s ease;
         }
         .blob {
             position: absolute;
-            filter: blur(90px);
-            opacity: 0.7;
-            animation: float 20s infinite alternate;
+            filter: blur(140px);
+            opacity: 0.4; /* Very subtle */
+            animation: float 25s infinite alternate;
             border-radius: 50%;
             transition: background 1s ease;
         }
@@ -96,15 +123,15 @@
 
         @keyframes float {
             0% { transform: translate(0, 0) scale(1); }
-            33% { transform: translate(30px, -50px) scale(1.1); }
-            66% { transform: translate(-20px, 20px) scale(0.9); }
+            33% { transform: translate(20px, -30px) scale(1.05); }
+            66% { transform: translate(-15px, 15px) scale(0.95); }
             100% { transform: translate(0, 0) scale(1); }
         }
 
         /* Typography */
         h1, h2, h3, h4 {
             font-weight: 700;
-            letter-spacing: -0.03em;
+            letter-spacing: -0.04em;
             margin-bottom: 0.5rem;
         }
         p { color: var(--text-muted); font-weight: 400; }
@@ -118,55 +145,55 @@
         nav {
             position: fixed; top: 0; width: 100%;
             display: flex; justify-content: space-between; align-items: center;
-            padding: 1rem 5%; z-index: 1000;
-            background: rgba(255, 255, 255, 0.2);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
+            padding: 1.5rem 5%; z-index: 1000;
+            background: var(--glass-bg);
+            backdrop-filter: blur(30px);
+            -webkit-backdrop-filter: blur(30px);
             border-bottom: 1px solid var(--glass-border);
+            transition: background 0.5s ease, border-color 0.5s ease;
         }
         .logo { font-size: 1.5rem; font-weight: 800; color: var(--text-color); text-decoration: none; letter-spacing: -0.05em; }
 
         .theme-btn {
-            background: var(--glass-bg);
+            background: transparent;
             border: 1px solid var(--glass-border);
             color: var(--text-color);
             padding: 0.6rem; border-radius: 50%; cursor: pointer;
             transition: all 0.3s ease; display: flex; align-items: center; justify-content: center;
-            backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
         }
         .theme-btn:hover { background: var(--glass-hover); transform: scale(1.05); }
         .theme-btn svg { width: 20px; height: 20px; }
 
         /* Layout */
         .container {
-            max-width: 1200px; margin: 0 auto; padding: 7rem 5% 4rem;
+            max-width: 1200px; margin: 0 auto; padding: 8rem 5% 4rem;
         }
 
         /* Glass Card Base */
         .glass-card {
             background: var(--glass-bg);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
+            backdrop-filter: blur(30px);
+            -webkit-backdrop-filter: blur(30px);
             border: 1px solid var(--glass-border);
-            border-radius: 24px;
+            border-radius: 28px;
             padding: 2.5rem;
             box-shadow: 0 8px 32px var(--glass-shadow);
             transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275),
-                        background 0.3s ease, box-shadow 0.3s ease;
+                        background 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
         }
         .glass-card:hover {
             transform: translateY(-5px);
             background: var(--glass-hover);
-            box-shadow: 0 16px 40px rgba(0,0,0,0.08);
+            box-shadow: 0 16px 40px var(--glass-shadow);
         }
 
         /* Hero */
         .hero {
             display: flex; flex-direction: column; align-items: center; text-align: center;
-            margin-bottom: 4rem;
+            margin-bottom: 5rem;
         }
-        .hero-title { font-size: clamp(3rem, 6vw, 5rem); font-weight: 800; line-height: 1.1; margin-bottom: 1rem; }
-        .hero-subtitle { font-size: clamp(1.1rem, 2vw, 1.3rem); max-width: 600px; margin: 0 auto 2rem; }
+        .hero-title { font-size: clamp(3rem, 6vw, 5.5rem); font-weight: 800; line-height: 1.1; margin-bottom: 1rem; }
+        .hero-subtitle { font-size: clamp(1.1rem, 2vw, 1.3rem); max-width: 650px; margin: 0 auto 2rem; color: var(--text-muted); }
 
         /* Bento Grid */
         .bento-grid {
@@ -195,14 +222,14 @@
         .btn {
             display: inline-flex; align-items: center; gap: 0.5rem;
             background: var(--accent); color: var(--accent-text);
-            padding: 0.75rem 1.5rem; border-radius: 12px;
-            text-decoration: none; font-weight: 500; font-size: 0.95rem;
+            padding: 0.8rem 1.5rem; border-radius: 99px;
+            text-decoration: none; font-weight: 600; font-size: 0.95rem;
             transition: all 0.3s ease; border: 1px solid transparent;
             margin-top: auto; align-self: flex-start;
         }
         .btn:hover {
             transform: translateY(-2px);
-            box-shadow: 0 10px 20px rgba(15, 23, 42, 0.15);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
             opacity: 0.9;
         }
 
@@ -211,24 +238,72 @@
             border: 1px solid var(--text-color);
         }
         .btn-outline:hover {
-            background: var(--text-color); color: var(--accent-text);
+            background: var(--text-color); color: var(--bg-base);
+        }
+
+        .btn-disabled {
+            background: var(--glass-hover); color: var(--text-muted);
+            pointer-events: none; border: 1px solid var(--glass-border);
         }
 
         .icon-wrapper { margin-bottom: 1.5rem; }
-        .icon-wrapper svg { width: 32px; height: 32px; color: var(--text-color); }
+        .icon-wrapper svg { width: 36px; height: 36px; color: var(--text-color); }
 
-        .tech-pill {
-            display: inline-flex; align-items: center; justify-content: center;
-            background: rgba(255, 255, 255, 0.5); border: 1px solid var(--glass-border);
-            padding: 0.4rem 0.8rem; border-radius: 8px; margin: 0.2rem;
-            font-size: 0.85rem; font-weight: 500; transition: all 0.3s ease;
+        /* Team Profiles */
+        .team-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            margin-top: 1rem;
         }
-        .tech-pill:hover { background: var(--text-color); color: var(--accent-text); }
+        .team-profile {
+            display: flex;
+            align-items: center;
+            gap: 1.2rem;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--glass-border);
+            padding: 1.2rem;
+            border-radius: 20px;
+            transition: all 0.3s ease;
+        }
+        .team-profile:hover {
+            background: var(--glass-hover);
+            transform: scale(1.02);
+        }
+        .profile-pic {
+            width: 50px;
+            height: 50px;
+            border-radius: 14px;
+            background: var(--glass-border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+        .profile-pic img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .profile-pic svg {
+            width: 24px;
+            height: 24px;
+            color: var(--text-color);
+        }
+        .profile-info h4 {
+            margin: 0;
+            font-size: 1.1rem;
+        }
+        .profile-info p {
+            margin: 0;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
 
         /* 3D Unfold Animations */
         .reveal-3d {
             opacity: 0;
-            transform: perspective(1200px) rotateX(-20deg) translateY(60px) scale(0.9);
+            transform: perspective(1200px) rotateX(-20deg) translateY(60px) scale(0.95);
             transform-origin: top center;
             transition: opacity 0.8s cubic-bezier(0.2, 0.8, 0.2, 1),
                         transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
@@ -237,6 +312,18 @@
             opacity: 1;
             transform: perspective(1200px) rotateX(0deg) translateY(0) scale(1);
         }
+
+        .footer {
+            margin-top: 4rem;
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+        .footer svg { width: 14px; height: 14px; color: #ef4444; fill: #ef4444; stroke: none; }
 
     </style>
 </head>
@@ -259,41 +346,39 @@
         <!-- Hero Section -->
         <div class="hero reveal-3d">
             <h1 class="hero-title">Creative Fullstack<br>Architect</h1>
-            <p class="hero-subtitle">Hi, I'm bluvs. I build fast, scalable web applications with a focus on clean code and minimalist, elegant architecture.</p>
+            <p class="hero-subtitle">Hi, I'm bluvs. I build fast, scalable web applications with AI.</p>
         </div>
 
         <!-- Bento Grid Layout -->
         <div class="bento-grid">
 
-            <!-- Tech Stack (Large Card) -->
+            <!-- Tech Team (Large Card) -->
             <div class="glass-card bento-item span-2 row-2 reveal-3d" style="transition-delay: 0.1s;">
-                <div>
-                    <div class="icon-wrapper">
-                        <svg viewBox="0 0 24 24"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
-                    </div>
-                    <h3>My Tech Stack</h3>
-                    <p style="margin-bottom: 1.5rem;">The tools I use to bring ideas to life.</p>
+                <div class="icon-wrapper">
+                    <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
                 </div>
-                <div>
-                    <div style="margin-bottom: 1rem;">
-                        <span class="tech-pill">React</span>
-                        <span class="tech-pill">Next.js</span>
-                        <span class="tech-pill">TypeScript</span>
-                        <span class="tech-pill">TailwindCSS</span>
-                        <span class="tech-pill">Vue.js</span>
+                <h3 style="margin-bottom: 0.5rem;">My Tech Team</h3>
+                <p style="margin-bottom: 2rem;">The duo behind the code.</p>
+
+                <div class="team-list">
+                    <div class="team-profile">
+                        <div class="profile-pic">
+                            <svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                        </div>
+                        <div class="profile-info">
+                            <h4>bluvs</h4>
+                            <p>Human Architect</p>
+                        </div>
                     </div>
-                    <div style="margin-bottom: 1rem;">
-                        <span class="tech-pill">Node.js</span>
-                        <span class="tech-pill">Express</span>
-                        <span class="tech-pill">NestJS</span>
-                        <span class="tech-pill">Python</span>
-                    </div>
-                    <div>
-                        <span class="tech-pill">PostgreSQL</span>
-                        <span class="tech-pill">MongoDB</span>
-                        <span class="tech-pill">Redis</span>
-                        <span class="tech-pill">Docker</span>
-                        <span class="tech-pill">AWS</span>
+
+                    <div class="team-profile">
+                        <div class="profile-pic">
+                            <img src="jules.png" alt="Jules">
+                        </div>
+                        <div class="profile-info">
+                            <h4>Jules</h4>
+                            <p>AI Engineer</p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -305,7 +390,7 @@
                 </div>
                 <h3 style="margin-bottom: 0.5rem;">Wardan</h3>
                 <p style="margin-bottom: 1.5rem;">A 100% free Discord moderation bot designed to keep communities safe with advanced features.</p>
-                <a href="https://github.com/bluvs" target="_blank" class="btn">
+                <a href="https://wardan.is-a.bot" target="_blank" class="btn">
                     View Project
                     <svg viewBox="0 0 24 24" style="width: 16px; height: 16px;"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
                 </a>
@@ -314,13 +399,12 @@
             <!-- Project 2 -->
             <div class="glass-card bento-item span-2 reveal-3d" style="transition-delay: 0.3s;">
                 <div class="icon-wrapper">
-                    <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                    <svg viewBox="0 0 24 24"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
                 </div>
-                <h3 style="margin-bottom: 0.5rem;">ThreatScope</h3>
-                <p style="margin-bottom: 1.5rem;">A powerful WebApp for scanning, analyzing, and detecting suspicious files and threats.</p>
-                <a href="https://github.com/bluvs" target="_blank" class="btn">
-                    View Project
-                    <svg viewBox="0 0 24 24" style="width: 16px; height: 16px;"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                <h3 style="margin-bottom: 0.5rem;">???</h3>
+                <p style="margin-bottom: 1.5rem;">A powerful WebApp for scanning, analyzing, and detecting suspicious files and threats. (Under development)</p>
+                <a href="#" class="btn btn-disabled">
+                    Soon
                 </a>
             </div>
 
@@ -337,7 +421,7 @@
             <div class="glass-card bento-item reveal-3d" style="transition-delay: 0.2s;">
                 <h3 style="font-size: 1.1rem; margin-bottom: 1rem;">Discord</h3>
                 <p style="font-size: 0.9rem; margin-bottom: 1.5rem;">Let's chat about tech, projects, or gaming.</p>
-                <a href="#" class="btn btn-outline" style="width: 100%; justify-content: center;">
+                <a href="http://discord.com/users/265928295793688596" target="_blank" class="btn btn-outline" style="width: 100%; justify-content: center;">
                     <svg viewBox="0 0 24 24" style="width: 18px; height: 18px;"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
                     bluvs
                 </a>
@@ -353,9 +437,13 @@
             </div>
 
             <div class="glass-card bento-item span-1 reveal-3d" style="transition-delay: 0.4s; align-items: center; justify-content: center; min-height: 200px;">
-                <svg viewBox="0 0 24 24" style="width: 64px; height: 64px; opacity: 0.2;"><polygon points="12 2 2 22 22 22 12 2"/></svg>
+                <svg viewBox="0 0 24 24" style="width: 64px; height: 64px; opacity: 0.1;"><polygon points="12 2 2 22 22 22 12 2"/></svg>
             </div>
 
+        </div>
+
+        <div class="footer reveal-3d" style="transition-delay: 0.5s;">
+            Made with <svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg> by Jules
         </div>
     </div>
 
